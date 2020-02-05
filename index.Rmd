@@ -1,0 +1,30 @@
+---
+title: "plotly test"
+author: "Anton Kasenkov"
+date: "05 02 2020"
+output:
+  ioslides_presentation: default
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+pacman::p_load(tidyverse, plotly, knitr)
+```
+
+***
+```{r saddle, fig.align='left'}
+x = (-100:100)
+y = (-100:100)
+t1 <- matrix(cbind(sort(x^2, decreasing = T), sort(y^2)), nrow = 201)
+t2 <- t1 + 4000
+t3 <- t1 - 4000
+plot_ly(showscale = FALSE) %>%
+  add_surface(z = ~t1) %>% 
+  add_surface(z = ~t2, opacity = 0.50) %>% 
+  add_surface(z = ~t3, opacity = 0.50)
+```
+
+## Thanks
